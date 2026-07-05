@@ -1,0 +1,396 @@
+/* ==========================================================================
+   1. RESET & BOX MODEL
+   ========================================================================== */
+
+/* Use a more intuitive box-sizing model across all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent font size inflation after orientation changes in iOS */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  /* Enable smooth scrolling behavior */
+  scroll-behavior: smooth;
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/* ==========================================================================
+   2. BODY & TYPOGRAPHY DEFAULTS
+   ========================================================================== */
+
+/* Set core body defaults for seamless rendering */
+body {
+  min-height: 100vh;
+  /* Native font stack for excellent legibility and speed */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+
+/* ==========================================================================
+   3. MEDIA & EMBEDDED ELEMENTS
+   ========================================================================== */
+
+/* Force responsive images and media elements to behave */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   4. FORMS & INTERACTION
+   ========================================================================== */
+
+/* Inherit fonts for inputs and buttons to avoid browser overrides */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Allow only vertical resizing of textareas to prevent layout breaking */
+textarea {
+  resize: vertical;
+}
+
+/* Provide interactive elements with a pointer cursor */
+button,
+select,
+a {
+  cursor: pointer;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/* ==========================================================================
+   5. ACCESSIBILITY & UTILITIES
+   ========================================================================== */
+
+/* Remove animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Standard visually hidden utility for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.visually-hidden.focusable:active,
+.visually-hidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* =======================================
+ *  Actual Site Styles
+ * =======================================
+ */
+
+html, body {
+    background: #EFEFEF;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    main {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+
+        & > button {
+            margin: 0 auto;
+        }
+    }
+
+    footer {
+        background: #333;
+        flex: 0 0 40px;
+        text-align: left;
+        p {
+            padding: 1em 0 0 1em;
+            color: #FFF;
+            font-size: 12px;
+            margin: 0;
+            text-align: left;
+        }
+    }
+}
+
+h1, p {
+    text-align: center;
+}
+
+h1 {
+    padding-top: 2rem;
+}
+
+section {
+    background: #FFF;
+    margin: 2em;
+    padding: 1em;
+    position: relative;
+    border-radius: 1em;
+}
+
+.add-week {
+    background: #437354;
+    border: 0;
+    border-radius: 5px;
+    color: #FFF;
+    text-align: center;
+    padding: 15px 20px;
+}
+
+/* =======================================
+ *  Payperiod styles
+ * =======================================
+ */
+
+tcv-payperiod {
+    position: relative;
+}
+
+tcv-payperiod::part(payperiod-wrapper) {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 0.5em;
+}
+
+tcv-payperiod::part(status) {
+    display: flex;
+    margin-left: 2em;
+    justify-content: start;
+}
+
+tcv-payperiod::part(status-header) {
+    font-size: 24px;
+}
+
+tcv-payperiod::part(row) {
+    margin-bottom: 10px;
+}
+
+tcv-payperiod::part(status-col) {
+    display: flex;
+    flex-direction: column;
+}
+
+tcv-payperiod::part(heading) {
+    text-align: center;
+    height: auto;
+}
+
+tcv-payperiod::part(day) {
+    display: inline-flex;
+    justify-content: center;
+    min-height: 50px;
+}
+
+tcv-payperiod::part(pay-period-header) {
+    text-align: center;
+}
+
+tcv-payperiod::part(payperiod-block) {
+    flex: 0 0 500px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 20px 1fr 1fr 1fr;
+    gap: 8px;
+}
+    
+tcv-payperiod::part(offset leading) {
+    grid-column: span 3 / span 3;
+}
+
+tcv-payperiod::part(w1-day thursday) {
+    grid-column-start: 4;
+}
+
+tcv-payperiod::part(w1-day friday) {
+    grid-column-start: 5;
+}
+
+tcv-payperiod::part(w1-day monday) {
+    grid-row-start: 3;
+}
+
+tcv-payperiod::part(w1-day tuesday) {
+    grid-row-start: 3;
+}
+
+tcv-payperiod::part(w1-day wednesday) {
+    grid-row-start: 3;
+}
+
+tcv-payperiod::part(w2-day thursday) {
+    grid-row-start: 3;
+}
+
+tcv-payperiod::part(w2-day friday) {
+    grid-row-start: 3;
+}
+
+tcv-payperiod::part(w2-day monday) {
+    grid-row-start: 4;
+}
+
+tcv-payperiod::part(w2-day tuesday) {
+    grid-row-start: 4;
+}
+
+tcv-payperiod::part(offset trailing) {
+    grid-column: span 2 / span 2;
+}
+
+tcv-payperiod.extraweek::part(payperiod-block) {
+    grid-template-rows: 0 1fr 1fr 1fr;
+}
+
+tcv-payperiod.extraweek::part(heading) {
+    visibility: hidden;
+}
+
+/*
+ *
+ */
+
+tcv-timeselect {
+    font-size: 30px;
+}
+
+tcv-timeselect::part(day-class-button) {
+    background: #EFEFEF;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    font-size: 30px;
+    padding: 0 20px 5px;
+    min-width: 105px;
+
+    &:hover {
+        background: #CCC;
+    }
+}
+
+tcv-timeselect::part(day-class-button):hover {
+        background: #CCC;
+}
+
+
+tcv-timeselect::part(emjoi-icon) {
+    display: inline-block;
+    padding-top: 0.25em;
+    margin-bottom: 5px;
+}
+
+tcv-timeselect::part(emjoi-title) {
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    margin-top: 5px;
+}
+
+tcv-timeselect::part(select-options-container) {
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 100;
+    border: 1px solid #CCC;
+    min-width: 105px;
+    box-shadow: #ccc 1px 2px 3px;
+    border-radius: 5px;
+}
+
+tcv-timeselect::part(timeselect-option) {
+    background: none;
+    border: 0;
+    padding: 10px;
+}
+
+tcv-timeselect::part(timeselect-option):hover {
+    background: #dacef6;
+    cursor: pointer;
+}
+
+/* tcv-timeselect::part(emjoi-icon) {
+} */

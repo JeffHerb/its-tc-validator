@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Telecommuting Validator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <h1>Telecommuting Validator</h1>
+            <p>The purpose of this tool is to validate your telecommuting days to ensure you are following the ITS policy.</p>
+            <section>
+                <tcv-payperiod>
+                    <tcv-timeselect slot="w1-thursday"></tcv-timeselect>
+                    <tcv-timeselect slot="w1-friday"></tcv-timeselect>
+                    <tcv-timeselect slot="w1-monday"></tcv-timeselect>
+                    <tcv-timeselect slot="w1-tuesday"></tcv-timeselect>
+                    <tcv-timeselect slot="w1-wednesday"></tcv-timeselect>
+                    <tcv-timeselect slot="w2-thursday"></tcv-timeselect>
+                    <tcv-timeselect slot="w2-friday"></tcv-timeselect>
+                    <tcv-timeselect slot="w2-monday"></tcv-timeselect>
+                    <tcv-timeselect slot="w2-tuesday"></tcv-timeselect>
+                    <tcv-timeselect slot="w2-wednesday"></tcv-timeselect>
+                </tcv-payperiod>
+            </section>
+            <button id="add-week" class="add-week">Add Week</button>
+        </main>
+        <footer>
+            <p>Telecommut Validator - v1</p>
+        </footer>
+        <script src="scripts.js"></script>
+    </body>
+</html>
