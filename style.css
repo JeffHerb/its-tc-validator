@@ -241,6 +241,7 @@ tcv-payperiod::part(status) {
 
 tcv-payperiod::part(status-header) {
     font-size: 24px;
+    position: relative;
 }
 
 tcv-payperiod::part(row) {
@@ -271,8 +272,7 @@ tcv-payperiod::part(payperiod-block) {
     flex: 0 0 500px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 20px 1fr 1fr 1fr;
-    gap: 8px;
+    grid-template-rows: 25px 1fr 1fr 1fr;
 }
     
 tcv-payperiod::part(offset leading) {
@@ -313,6 +313,39 @@ tcv-payperiod::part(w2-day monday) {
 
 tcv-payperiod::part(w2-day tuesday) {
     grid-row-start: 4;
+}
+
+tcv-payperiod::part(w1-day thursday),
+tcv-payperiod::part(w1-day friday),
+tcv-payperiod::part(w1-day monday),
+tcv-payperiod::part(w1-day tuesday),
+tcv-payperiod::part(w1-day wednesday),
+tcv-payperiod::part(w2-day thursday),
+tcv-payperiod::part(w2-day friday),
+tcv-payperiod::part(w2-day monday),
+tcv-payperiod::part(w2-day tuesday),
+tcv-payperiod::part(w2-day wednesday) {
+    padding: 4px;
+}
+
+tcv-payperiod.error-status::part(w1-day thursday),
+tcv-payperiod.error-status::part(w1-day friday),
+tcv-payperiod.error-status::part(w1-day monday),
+tcv-payperiod.error-status::part(w1-day tuesday),
+tcv-payperiod.error-status::part(w1-day wednesday),
+tcv-payperiod.error-status::part(w2-day thursday),
+tcv-payperiod.error-status::part(w2-day friday),
+tcv-payperiod.error-status::part(w2-day monday),
+tcv-payperiod.error-status::part(w2-day tuesday),
+tcv-payperiod.error-status::part(w2-day wednesday) {
+    background: #fc8f8f;
+}
+
+tcv-payperiod::part(status-icon) {
+    font-weight: 600;
+    display: inline-block;
+    position: relative;
+    top: 4px;
 }
 
 tcv-payperiod::part(offset trailing) {

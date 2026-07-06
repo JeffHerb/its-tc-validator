@@ -54,7 +54,7 @@
 
                     return `<button role="button" part="timeselect-option" value="office" data-workday="true">
                                 <span class="icon" part="timeselect-option-emoji">&#127970;</span>
-                                <span part="timeselect-option-emoji">Office</span>
+                                <span class="title" part="timeselect-option-emoji">Office</span>
                             </button>`;
 
                     break;
@@ -301,22 +301,23 @@
             let adTimeSelects = this.querySelectorAll('tcv-timeselect');
 
             let iTotalWorkDays = 0;
-            let iWorkDay = 0;
             let iTCDay = 0;
-            let iVacationDay = 0;
-            let iSickDay = 0;
-            let iHolidayDay = 0;
+            let iOffice = 0;
 
             for (let t = 0, tLen = adTimeSelects.length; t < tLen; t++) {
 
                 let oDayMeta = adTimeSelects[t].dayMeta;
 
-                if (oDayMeta.bWorkDay) {
-                    iTotalWorkDays +=1;
+                if (oDayMeta.sType === "office" || oDayMeta.sType === "telecommute") {
+                    iTotalWorkDays += 1;
                 }
 
                 if (oDayMeta.bTCing) {
-                    iTCDay +=1;
+                    iTCDay += 1;
+                }
+
+                if (oDayMeta.bWorkDay && !oDayMeta.bTCing) {
+                    iOffice += 1;
                 }
 
             }
@@ -326,6 +327,21 @@
             this.sdStatusTotalWorkDays.textContent = iTotalWorkDays;
             this.sdRequiredInOfficeDays.textContent = iRequiredOfficeDays;
             this.sdAllowedTCDays.textContent = iTotalWorkDays - iRequiredOfficeDays;
+
+            if (iOffice >= iRequiredOfficeDays) {
+                this.sdStatusIcon.textContent = "\u{2714}";
+                this.sdStatusIcon.style.fontSize = `32px`;
+                this.sdStatusIcon.style.color = `#1d9131`;
+
+                this.classList.remove('error-status');
+            }
+            else {
+                this.sdStatusIcon.textContent = "\u{2717}";
+                this.sdStatusIcon.style.color = `#FF0000`;
+
+                this.classList.add('error-status');
+            }
+
 
         }
 
@@ -378,7 +394,10 @@
                         </div>
                         <div class="status" part="status">
                             <div class="status-col" part="status-col">
-                                <header part="status-header">Status:</header>
+                                <header part="row status-header">
+                                    <span>TC Status:</span>
+                                    <span id="status-icon" part="status-icon"></span>
+                                </header>
                                 <div part="row">
                                     <span class="">Total Work Days:</span>
                                     <span id="total-work-day">0</span>
@@ -410,6 +429,7 @@
             this.sdStatusTotalWorkDays = this.shadowRoot.querySelector('#total-work-day');
             this.sdRequiredInOfficeDays = this.shadowRoot.querySelector('#require-in-office-days');
             this.sdAllowedTCDays = this.shadowRoot.querySelector('#total-allowed-tc-days');
+            this.sdStatusIcon = this.shadowRoot.querySelector('#status-icon');
 
             // Bind change event to catch day type switches
             this.addEventListener('change', this.#calculateStatus.bind(this));
@@ -429,8 +449,6 @@
             if (adTimeSelects.length) {
 
                 for (let i = 0, iLen = adTimeSelects.length; i < iLen; i++) {
-
-                    console.log()
 
                     if (adTimeSelects[i].isOpen) {
                         adTimeSelects[i].close();
@@ -507,8 +525,6 @@
 
         }
 
-        console.log(`-${93 * adNewPayPerid.length}px`);
-
         dNewPayPeriod.setAttribute('style', `position: relative; margin-top: -93px;`);
 
         dSection.append(dNewPayPeriod);
@@ -519,13 +535,10 @@
 
     setTimeout(() => {
 
-        console.log("Bootstrap");
-
         let adPayPeriod = document.querySelector('tcv-payperiod');
 
         adPayPeriod.updateStatus();
 
     }, 100)
 
-    console.log("fin");
 })();
