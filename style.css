@@ -360,6 +360,18 @@ tcv-payperiod.extraweek::part(heading) {
     visibility: hidden;
 }
 
+tcv-payperiod::part(weekday) {
+    pointer-events: all;
+}
+
+tcv-payperiod {
+    pointer-events: none;
+
+    & tcv-timeselect {
+        pointer-events: all;
+    }
+}
+
 /*
  *
  */
@@ -397,7 +409,7 @@ tcv-timeselect::part(emjoi-icon) {
 
 tcv-timeselect::part(emjoi-title) {
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     position: relative;
     margin-top: 5px;
 }

@@ -95,6 +95,15 @@
 
                     break;
 
+                case "event-tc":
+
+                    return `<button role="button" part="timeselect-option" value="event-tc" data-workday="true">
+                                <span class="icon" part="timeselect-option-emoji">&#10054;</span>
+                                <span class="title" part="timeselect-option-emoji" font-size="12px !important">Event WFH</span>
+                            </button>`;
+
+                    break;
+
             }
 
         }
@@ -108,6 +117,7 @@
                 ${(this.oDayMeta.sType !== "vacation") ? this.#createOption("vacation") : ""}
                 ${(this.oDayMeta.sType !== "sick") ? this.#createOption("sick") : ""}
                 ${(this.oDayMeta.sType !== "holiday") ? this.#createOption("holiday") : ""}
+                ${(this.oDayMeta.sType !== "event-tc") ? this.#createOption("event-tc") : ""}
             </div>`;
 
         }
@@ -363,31 +373,31 @@
                             <div class="w1-day thursday" part="day w1-day thursday">
                                 <slot name="w1-thursday"></slot>
                             </div>
-                            <div class="w1-day friday" part="day w1-day friday">
+                            <div class="weekday w1-day friday" part="day w1-day friday">
                                 <slot name="w1-friday"></slot>
                             </div>
-                            <div class="w1-day monday" part="day w1-day monday">
+                            <div class="weekday w1-day monday" part="day w1-day monday">
                                 <slot name="w1-monday"></slot>
                             </div>
-                            <div class="w1-day tuesday" part="day w1-day tuesday">
+                            <div class="weekday w1-day tuesday" part="day w1-day tuesday">
                                 <slot name="w1-tuesday"></slot>
                             </div>
-                            <div class="w1-day wednesday" part="day w1-day wednesday">
+                            <div class="weekday w1-day wednesday" part="day w1-day wednesday">
                                 <slot name="w1-wednesday"></slot>
                             </div>
-                            <div class="w2-day thursday" part="day w2-day thursday">
+                            <div class="weekday w2-day thursday" part="day w2-day thursday">
                                 <slot name="w2-thursday"></slot>
                             </div>
-                            <div class="w2-day friday" part="day w2-day friday">
+                            <div class="weekday w2-day friday" part="day w2-day friday">
                                 <slot name="w2-friday"></slot>
                             </div>
-                            <div class="w2-day monday" part="day w2-day monday">
+                            <div class="weekday w2-day monday" part="day w2-day monday">
                                 <slot name="w2-monday"></slot>
                             </div>
-                            <div class="w2-day tuesday" part="day w2-day tuesday">
+                            <div class="weekday w2-day tuesday" part="day w2-day tuesday">
                                 <slot name="w2-tuesday"></slot>
                             </div>
-                            <div class="w2-day wednesday" part="day w2-day wednesday">
+                            <div class="weekday w2-day wednesday" part="day w2-day wednesday">
                                 <slot name="w2-wednesday"></slot>
                             </div>
                             <div class="offset trailing" part="offset trailing"></div>
@@ -525,7 +535,7 @@
 
         }
 
-        dNewPayPeriod.setAttribute('style', `position: relative; margin-top: -93px;`);
+        dNewPayPeriod.setAttribute('style', `position: relative; margin-top: -99px;`);
 
         dSection.append(dNewPayPeriod);
 
